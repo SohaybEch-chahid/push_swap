@@ -1,4 +1,26 @@
-int main(void)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/11 16:57:22 by sech-cha          #+#    #+#             */
+/*   Updated: 2026/11/12 05:00:37 by sech-cha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+#include <stdio.h>
+
+int	main(int ac, char **av)
 {
-    return 0;
+    t_stack *stack_A;
+    t_stack *stack_B;
+
+	stack_A = NULL;
+	stack_A= ft_create_stack(ac, av);
+	ft_display_stack(stack_A);
+	ft_free_stack(&stack_A);
+	return (0);
 }
