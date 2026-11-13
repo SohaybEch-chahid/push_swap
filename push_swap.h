@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:53:04 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 11:31:26 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 17:33:26 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,12 @@ void    ft_rr(t_data *stack_a, t_data *stack_b);
 void    ft_rra(t_data *stack_a);
 void    ft_rrb(t_data *stack_b);
 void    ft_rrr(t_data *stack_a, t_data *stack_b);
+
+
+/* Parsing part */
+char	*ft_get_strategy_selector(char *str, int *index);
+t_data	*ft_parse_numbers(t_data *stack, char *str, int *index);
+int	ft_check_duplicates(t_data *data);
+
 
 #endif
