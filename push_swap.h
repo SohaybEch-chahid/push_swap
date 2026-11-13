@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:53:04 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 10:29:26 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:31:26 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_data
 }   t_data;
 
 /* Stack utilities */
-void    ft_push(t_data **top, int value);
-int     ft_pop(t_data **top, int *value);
-void    ft_free_stack(t_data **top);
+void    ft_push(t_data *top, int value);
+int     ft_pop(t_data *top, int *value);
+void    ft_free_stack(t_data *top);
 void    ft_display_stack(t_data *top);
 t_data	*ft_create_stack(int argc, char **argv);
 
