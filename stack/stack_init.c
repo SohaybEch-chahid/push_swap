@@ -6,35 +6,12 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:49:48 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 14:00:45 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:23:26 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
-
-int	ft_atoi(char *str)
-{
-	int		sign;
-	long	res;
-
-	sign = 1;
-	res = 0;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str++ - '0');
-	}
-	return ((int)(res * sign));
-}
+#include "../../Libft/libft.h"
 
 t_data	*ft_create_stack(int argc, char **argv)
 {
