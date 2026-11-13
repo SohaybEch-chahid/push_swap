@@ -6,11 +6,12 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:49:48 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/12 04:58:45 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 10:09:59 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include <stdlib.h>
 
 int	ft_atoi(char *str)
 {
@@ -34,13 +35,16 @@ int	ft_atoi(char *str)
 	return ((int)(res * sign));
 }
 
-t_stack	*ft_create_stack(int argc, char **argv)
+t_data	*ft_create_stack(int argc, char **argv)
 {
 	int		i;
 	int		nb;
-	t_stack	*stack;
+	t_data	*stack;
 
-	stack = NULL;
+	stack = malloc(sizeof(t_data));
+	stack->stack->next = NULL;
+	stack->size_stack = -1;
+
 	i = 1;
 	while (i < argc)
 	{

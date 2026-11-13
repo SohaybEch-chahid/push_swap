@@ -6,35 +6,42 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:14 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/12 03:18:22 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 10:38:46 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_sa(t_stack *stack_A)
+void	ft_sa(t_data *stack_A)
 {
 	int	popped1;
 	int	popped2;
 
+	if (stack_A->size_stack < 1)
+		return ;
 	ft_pop(&stack_A, &popped1);
 	ft_pop(&stack_A, &popped2);
 	ft_push(&stack_A, popped1);
 	ft_push(&stack_A, popped2);
 }
 
-void	ft_sb(t_stack *stack_B)
+void	ft_sb(t_data *stack_B)
 {
 	int	popped1;
 	int	popped2;
 
+	if (stack_B->size_stack < 1)
+		return ;
 	ft_pop(&stack_B, &popped1);
 	ft_pop(&stack_B, &popped2);
 	ft_push(&stack_B, popped1);
 	ft_push(&stack_B, popped2);
 }
-void	ft_ss(t_stack *stack_A, t_stack *stack_B)
+
+void	ft_ss(t_data *stack_A, t_data *stack_B)
 {
+	if (stack_A->size_stack < 1 || stack_B->size_stack < 1)
+		return ;
 	ft_sa(stack_A);
 	ft_sa(stack_B);
 }

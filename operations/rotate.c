@@ -6,15 +6,15 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:10 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/12 03:35:19 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 10:39:17 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_ra(t_stack *stack_A)
+void	ft_ra(t_data *stack_A)
 {
-	t_stack	*tmp_stack;
+	t_data	*tmp_stack;
 	int		popped;
 	int		tmp;
 
@@ -33,9 +33,9 @@ void	ft_ra(t_stack *stack_A)
 	}
 }
 
-void	ft_rb(t_stack *stack_B)
+void	ft_rb(t_data *stack_B)
 {
-	t_stack	*tmp_stack;
+	t_data	*tmp_stack;
 	int		popped;
 	int		tmp;
 
@@ -53,9 +53,9 @@ void	ft_rb(t_stack *stack_B)
 		ft_push(&stack_B, tmp);
 	}
 }
-void	ft_rr(t_stack *stack_A, t_stack *stack_B)
-{
-    ft_ra(stack_A);
-    ft_rb(stack_B);
-}
 
+void	ft_rr(t_data *stack_A, t_data *stack_B)
+{
+	ft_ra(stack_A);
+	ft_rb(stack_B);
+}

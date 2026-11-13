@@ -6,55 +6,57 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:51:09 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/12 03:24:26 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/13 10:14:21 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../ft_printf/ft_printf.h"
 #include "../push_swap.h"
 
-int	is_empty(t_stack *top)
+int	is_empty(t_data *data)
 {
-	return (top == NULL);
+	return (data->stack->next == NULL);
 }
 
-void	ft_push(t_stack **top, int value)
+void	ft_push(t_data **top, int value)
 {
-	t_stack	*node;
+	t_data	*node;
 
-	node = malloc(sizeof(t_stack));
+	node->stack = malloc(sizeof(t_data));
 	if (!node)
 		return ;
-	node->value = value;
-	node->next = *top;
+	node->stack->value = value;
+	node->size_stack++;
+	node->stack->next = (*top)->stack;
 	*top = node;
 }
 
-int	ft_pop(t_stack **top, int *value)
+int	ft_pop(t_data **top, int *value)
 {
-	t_stack	*tmp;
+	t_data	*tmp;
 
 	if (is_empty(*top))
 	{
 		return (0);
 	}
 	tmp = *top;
-	*value = tmp->value;
-	*top = (*top)->next;
+	*value = tmp->stack->value;
+	(*top)->stack = (*top)->stack->next;
+	(*top)->size_stack--;
 	free(tmp);
 	return (1);
 }
 
-void	ft_display_stack(t_stack *top)
+void	ft_display_stack(t_data *top)
 {
-	t_stack	*current;
+	t_data	*current;
 
 	if (is_empty(top))
 		return ;
 	current = top;
 	while (current)
 	{
-		ft_printf("%d\n", current->value);
-		current = current->next;
+		ft_printf("%d\n", current->stack->value);
+		current->stack = current->stack->next;
 	}
 }
