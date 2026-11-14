@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:51:09 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 13:59:13 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/14 14:29:48 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_push(t_data *data, int value)
 {
 	t_stack	*node;
 
-	if (!data)
-		return ;
 	node = malloc(sizeof(t_stack));
 	if (!node)
 		return ;

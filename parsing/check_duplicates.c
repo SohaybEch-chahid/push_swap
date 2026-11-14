@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:24 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 16:31:16 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/14 14:19:46 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ int	ft_get_lst_max(t_stack *head)
 {
 	int	i;
 	int	max;
+    int min;
 
 	i = 0;
 	max = head->value;
+    min = head->value;
 	while (head)
 	{
 		if (head->value > max)
 			max = head->value;
+		if (head->value < min)
+			min = head->value;
 		head = head->next;
 	}
-	return (max);
+	return (max - min);
 }
 
 int	ft_is_duplicates(t_stack *top, int max)

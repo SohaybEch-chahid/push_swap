@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:10 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 11:52:08 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/14 14:31:56 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	ft_rb(t_data *stack_B)
 
 void	ft_rr(t_data *stack_A, t_data *stack_B)
 {
-	if (stack_A->size_stack <= 0 || stack_B->size_stack <= 0)
-		return ;
 	ft_ra(stack_A);
 	ft_rb(stack_B);
 }
