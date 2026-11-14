@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:51:02 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/13 11:36:11 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/14 15:21:17 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	ft_free_stack(t_data *top)
 {
-    t_data *current;
-    t_stack *tmp;
+	t_stack	*current;
+	t_stack	*tmp;
 
-    if (!top)
-        return;
-    tmp = NULL;
-    current = top;
-    while (current->stack) {
-        tmp= current->stack;
-        current->stack = current->stack->next;
-        free(tmp);
-    }
-    top->size_stack = 0;
+	if (!top)
+		return ;
+	current = top->stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	top->stack = NULL;
+	top->size_stack = 0;
 }
