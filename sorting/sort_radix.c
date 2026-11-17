@@ -6,71 +6,48 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:39 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/17 15:30:56 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:27:31 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Libft/libft.h"
-#include "../push_swap.h"
+#include"../push_swap.h"
 
-int	ft_get_max_number(t_stack *stack)
+int		ft_get_max_nb(t_stack *stack);
+int		ft_get_passes_nb(int nb);
+
+void    ft_sort_radix(t_data *stack_a, t_data *stack_b)
 {
-	t_stack	*current;
-	int		max;
+    int max_bits;
+    int size;
+    int bit;
+    int i;
 
-	current = stack;
-	max = current->value;
-	while (current)
-	{
-		if (current->value > max)
-			max = current->value;
-		current = current->next;
-	}
-	return (max);
-}
-int		ft_get_len_nb(int nb);
-
-void	ft_sort_radix(t_data *stack_a, t_data *stack_b)
-{
-	int	max;
-	int	*arr;
-	int	len;
-	int	*res;
-	int	pos;
-	int	i;
-
-	// firt get the max of the stack_a
-	// then create array of 10 cases
-	// get the last index of the nember
-	// go to thin index in the array and add one
-	// then accumilaite the previous case with the current case
-	// then push into stack_b each index
-	max = ft_get_max_number(stack_a->stack);
-	pos = 1;
-	while (max / pos > 0) // log n or b numers of index of the max numers
-	{
-		arr = ft_calloc(10, sizeof(int));
-		if (!arr)
-			return ;
-		while (stack_a->stack)
-		{
-			arr[(stack_a->stack->value / pos) % 10]++;
-			stack_a->stack = stack_a->stack->next;
-		}
-		i = 1;
-		while (i < 10)
-		{
-			arr[i] = arr[i - 1] + arr[i];
-			i++;
-		}
+    size = stack_a->size_stack;
+    if (size <= 1)
+        return ;
+    max_bits = 0;
+    while ((size - 1) >> max_bits)
+        max_bits++;
+    bit = 0;
+    while (bit < max_bits)
+    {
         i = 0;
-        while (i < 10) {
-            ft_pb()
+        while (i < size)
+        {
+            if (((stack_a->stack->value >> bit) & 1) == 0)
+                ft_ra(stack_a);
+            else
+                ft_pb(stack_a, stack_b);
             i++;
         }
-		pos *= 10;
-	}
-	res = ft_calloc(stack_a->size_stack, sizeof(int));
-	if (!res)
-		return ;
+        while (stack_b->stack)
+            ft_pa(stack_a, stack_b);
+        bit++;
+    }
 }
+
+/*
+Instead of sorting the original numbers, we sort their indexes
+form this [-5, 2, 0, -1, 3] to this [0, 3, 2, 1, 4]
+Now Radix Sort works perfectly because every value is nonnegative!
+*/
