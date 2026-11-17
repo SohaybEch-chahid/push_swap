@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:53:04 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/16 15:55:25 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/17 13:52:00 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int					ft_check_duplicates(t_data *data);
 /* sorting part */
 void	ft_sort_selection(t_data *a, t_data *b);
 void ft_sort_Chunk(t_data *stack_a, t_data *stack_b);
+void ft_sort_radix(t_data *stack_a, t_data *stack_b);
 
 #endif
