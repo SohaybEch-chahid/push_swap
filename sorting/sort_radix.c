@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:39 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/17 18:42:14 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/17 18:55:23 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,23 @@
 int			ft_get_max_index(t_stack *stack);
 int			ft_get_passes_nb(int nb);
 
+int			*ft_copy_stack_to_array(t_stack *stack);
+void		ft_merge_sort(int *arr);
+int			ft_binary_search(int *arr);
+
 static void	ft_index_stack(t_data *stack)
 {
 	t_stack	*i;
-	t_stack	*j;
-	int		counter;
+	int		*arr;
+	int		index;
 
+	arr = ft_copy_stack_to_array(stack->stack); // n
+	ft_merge_sort(arr);                         // n log n
 	i = stack->stack;
 	while (i)
 	{
-		counter = 0;
-		j = stack->stack;
-		while (j)
-		{
-			if (j->value < i->value)
-				counter++;
-			j = j->next;
-		}
-		i->index = counter;
+		index = ft_binary_search(arr); // log n
+		i->index = index;
 		i = i->next;
 	}
 }
