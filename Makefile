@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-FT_PRINTF_DIR = ../ft_printf
-LIBFT_DIR = ../Libft
+FT_PRINTF_DIR = ft_printf
+LIBFT_DIR = Libft
 
 FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 LIBFT = $(LIBFT_DIR)/libft.a
