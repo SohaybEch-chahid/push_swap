@@ -1,75 +1,79 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
+/*   sort_selection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:44 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 18:37:58 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/19 14:16:06 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_is_sorted(t_data *a)
+static int ft_is_sorted(t_data *stack)
 {
-	t_stack	*current;
+    t_stack *node;
 
-    if (!a || !a->stack || !a->stack->next)
-		return (1);
-	current = a->stack;
-	while (current->next)
-	{
-		if (current->value > current->next->value)
-			return (0);
-		current = current->next;
-	}
-	return (1);
+    if (!stack || !stack->stack || !stack->stack->next)
+        return (1);
+    node = stack->stack;
+    while (node->next)
+    {
+        if (node->value > node->next->value)
+            return (0);
+        node = node->next;
+    }
+    return (1);
 }
 
-int	ft_min_position(t_data *stack_a)
+static int ft_min_position(t_data *stack)
 {
-	t_stack	*i;
-	int		min;
-	int		index;
-	int		pos;
+    t_stack *node = stack->stack;
+    int min = node->value;
+    int pos = 0;
+    int min_pos = 0;
 
-	i = stack_a->stack;
-	min = i->value;
-	index = 0;
-	pos = 0;
-	while (i)
-	{
-		if (min > i->value)
-		{
-			min = i->value;
-			pos = index;
-		}
-		index++;
-		i = i->next;
-	}
-	return (pos);
+    while (node)
+    {
+        if (node->value < min)
+        {
+            min = node->value;
+            min_pos = pos;
+        }
+        pos++;
+        node = node->next;
+    }
+    return (min_pos);
 }
 
-void	ft_min_to_top(t_data *a)
+static void ft_min_to_top(t_data *stack)
 {
-	int		pos;
+    int pos = ft_min_position(stack);
 
-	pos = ft_min_position(a);
-	while (pos--)
-		ft_ra(a);
+    if (pos <= stack->size_stack / 2)
+    {
+        while (pos-- > 0)
+            ft_ra(stack);
+    }
+    else
+    {
+        pos = stack->size_stack - pos;
+        while (pos-- > 0)
+            ft_rra(stack);
+    }
 }
 
-void	ft_sort_selection(t_data *stack_a, t_data *stack_b)
+void ft_sort_selection(t_data *a, t_data *b)
 {
-	if (!stack_a || !stack_b || ft_is_sorted(stack_a))
-		return ;
-	while (stack_a->size_stack > 0)
-	{
-		ft_min_to_top(stack_a);
-		ft_pb(stack_a, stack_b);
-	}
-	while (stack_b->size_stack > 0)
-		ft_pa(stack_a, stack_b);
+    if (!a || !b || ft_is_sorted(a))
+        return;
+    while (a->size_stack > 1)
+    {
+        ft_min_to_top(a);
+        ft_pb(a, b);
+    }
+    while (b->stack)
+        ft_pa(a, b);
 }

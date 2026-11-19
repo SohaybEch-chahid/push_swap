@@ -6,36 +6,72 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:50:30 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 15:19:11 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/18 23:12:58 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Libft/libft.h"
 #include "../push_swap.h"
 
-const char	*ft_get_strategy_selector(char *str, int *index)
+static void	ft_init_options(t_options *options)
 {
-	if (!str || !index)
-		return ("--adaptive");
-	if (ft_strncmp(str, "--simple", 9) == 0)
+	options->simple = 0;
+	options->medium = 0;
+	options->complex = 0;
+	options->adaptive = 1;
+}
+
+int	ft_is_option(char *arg)
+{
+	if (!arg)
+		return (0);
+	if (!ft_strncmp(arg, "--simple", 9))
+		return (1);
+	if (!ft_strncmp(arg, "--medium", 9))
+		return (1);
+	if (!ft_strncmp(arg, "--complex", 9))
+		return (1);
+	if (!ft_strncmp(arg, "--adaptive", 11))
+		return (1);
+	return (0);
+}
+
+static int	ft_set_option(char *arg, t_options *options)
+{
+	if (!ft_strncmp(arg, "--simple", 9))
+		options->simple = 1;
+	else if (!ft_strncmp(arg, "--medium", 9))
+		options->medium = 1;
+	else if (!ft_strncmp(arg, "--complex", 9))
+		options->complex = 1;
+	else if (!ft_strncmp(arg, "--adaptive", 11))
+		options->adaptive = 1;
+	else
+		return (0);
+	return (1);
+}
+
+int	ft_parse_options(int ac, char **av, t_options *options)
+{
+	int	i;
+	int	count;
+
+	ft_init_options(options);
+	i = 1;
+	count = 0;
+	while (i < ac)
 	{
-		(*index)++;
-		return ("--simple");
+		if (av[i][0] == '-' && av[i][1] == '-')
+		{
+			if (!ft_is_option(av[i]))
+				return (0);
+			if (++count > 1)
+				return (0);
+			options->adaptive = 0;
+			if (!ft_set_option(av[i], options))
+				return (0);
+		}
+		i++;
 	}
-	if (ft_strncmp(str, "--medium", 9) == 0)
-	{
-		(*index)++;
-		return ("--medium");
-	}
-	if (ft_strncmp(str, "--complex", 10) == 0)
-	{
-		(*index)++;
-		return ("--complex");
-	}
-	if (ft_strncmp(str, "--adaptive", 11) == 0)
-	{
-		(*index)++;
-		return ("--adaptive");
-	}
-	return ("--adaptive");
+	return (1);
 }

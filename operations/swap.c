@@ -1,40 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/11 16:50:14 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 14:49:14 by sech-cha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../push_swap.h"
 
-static void	ft_swap(t_data *stack)
+static int ft_swap(t_data *stack)
 {
-	int	tmp;
+    int tmp;
 
-	if (!stack || stack->size_stack < 2)
-		return ;
-	tmp = stack->stack->value;
-	stack->stack->value = stack->stack->next->value;
-	stack->stack->next->value = tmp;
+    if (!stack || stack->size_stack < 2)
+        return (0);
+    tmp = stack->stack->value;
+    stack->stack->value = stack->stack->next->value;
+    stack->stack->next->value = tmp;
+    tmp = stack->stack->index;
+    stack->stack->index = stack->stack->next->index;
+    stack->stack->next->index = tmp;
+    return (1);
 }
 
-void	ft_sa(t_data *stack_A)
+void ft_sa(t_data *a)
 {
-	ft_swap(stack_A);
+    if (ft_swap(a))
+        (void)write(1, "sa\n", 3);
 }
 
-void	ft_sb(t_data *stack_B)
+void ft_sb(t_data *b)
 {
-	ft_swap(stack_B);
+    if (ft_swap(b))
+        (void)write(1, "sb\n", 3);
 }
 
-void	ft_ss(t_data *stack_A, t_data *stack_B)
+void ft_ss(t_data *a, t_data *b)
 {
-	ft_swap(stack_A);
-	ft_swap(stack_B);
+    int changed;
+
+    changed = ft_swap(a);
+    if (ft_swap(b))
+        changed = 1;
+    if (changed)
+        (void)write(1, "ss\n", 3);
 }

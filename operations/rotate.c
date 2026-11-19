@@ -1,45 +1,41 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/11 16:50:10 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 15:02:06 by sech-cha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../push_swap.h"
 
-static void	ft_rotate(t_data *stack)
+static int ft_rotate(t_data *stack)
 {
-	t_stack	*first;
-	t_stack	*last;
+    t_stack *first;
+    t_stack *last;
 
-	if (!stack || stack->size_stack < 2)
-		return ;
-	first = stack->stack;
-	stack->stack = first->next;
-	first->next = NULL;
-	last = stack->stack;
-	while (last->next)
-		last = last->next;
-	last->next = first;
+    if (!stack || stack->size_stack < 2)
+        return (0);
+    first = stack->stack;
+    stack->stack = first->next;
+    first->next = NULL;
+    last = stack->stack;
+    while (last->next)
+        last = last->next;
+    last->next = first;
+    return (1);
 }
 
-void	ft_ra(t_data *stack_A)
+void ft_ra(t_data *a)
 {
-	ft_rotate(stack_A);
+    if (ft_rotate(a))
+        (void)write(1, "ra\n", 3);
 }
 
-void	ft_rb(t_data *stack_B)
+void ft_rb(t_data *b)
 {
-	ft_rotate(stack_B);
+    if (ft_rotate(b))
+        (void)write(1, "rb\n", 3);
 }
 
-void	ft_rr(t_data *stack_A, t_data *stack_B)
+void ft_rr(t_data *a, t_data *b)
 {
-	ft_rotate(stack_A);
-	ft_rotate(stack_B);
+    int changed;
+
+    changed = ft_rotate(a);
+    if (ft_rotate(b))
+        changed = 1;
+    if (changed)
+        (void)write(1, "rr\n", 3);
 }

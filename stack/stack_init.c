@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:49:48 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 15:14:08 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/18 23:13:50 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,18 @@ t_data	*ft_create_stack(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if (!ft_parse_numbers(stack, av[i], &tail))
+		if (!ft_is_option(av[i]))
 		{
-			ft_free_stack(stack);
-			free(stack);
-			return (NULL);
+			if (!ft_parse_numbers(stack, av[i], &tail))
+			{
+				ft_free_stack(stack);
+				free(stack);
+				return (NULL);
+			}
 		}
 		i++;
 	}
-	if (!ft_check_duplicates(stack))
+	if (stack->size_stack == 0 || !ft_check_duplicates(stack))
 	{
 		ft_free_stack(stack);
 		free(stack);

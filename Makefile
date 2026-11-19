@@ -1,30 +1,32 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-
 NAME = push_swap
-
 FT_PRINTF_DIR = ft_printf
 LIBFT_DIR = Libft
-
 FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 LIBFT = $(LIBFT_DIR)/libft.a
-
 INCLUDES = -I. -I$(FT_PRINTF_DIR) -I$(LIBFT_DIR)
 
 SRC = main.c \
-      operations/push.c \
-      operations/swap.c \
-      operations/rotate.c \
-      operations/reverse_rotate.c \
-      parsing/check_duplicates.c \
       parsing/parse_args.c \
       parsing/parse_number.c \
-      sorting/sort_radix.c \
-      sorting/sort_small.c \
-      sorting/sort_utils.c \
+      parsing/check_duplicates.c \
       stack/stack_init.c \
-      stack/stack_utils.c \
-      stack/stack_free.c
+      stack/stack_free.c \
+      operations/push.c \
+      operations/rotate.c \
+      operations/reverse_rotate.c \
+      operations/swap.c \
+      sorting/sort.c \
+      sorting/sort_simple.c \
+      sorting/sort_small.c \
+      sorting/sort_medium.c \
+      sorting/sort_complex.c \
+      sorting/sort_adaptive.c \
+      sorting/sort_chunk.c \
+      sorting/sort_radix.c \
+      sorting/sort_utils.c \
+      metrics/disorder.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -54,5 +56,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean
-
+.PHONY: all clean fclean re

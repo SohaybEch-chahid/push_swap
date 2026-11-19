@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/11 16:53:04 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/17 13:52:00 by sech-cha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -18,46 +6,61 @@
 
 typedef struct s_stack
 {
-	int				value;
-    int             index;
-	struct s_stack	*next;
-}					t_stack;
+    int value;
+    int index;
+    struct s_stack *next;
+} t_stack;
 
 typedef struct s_data
 {
-	t_stack			*stack;
-	int				size_stack;
-}					t_data;
+    t_stack *stack;
+    int size_stack;
+} t_data;
 
-/* Stack utilities */
-void				ft_push(t_data *top, int value);
-int					ft_pop(t_data *top, int *value);
-void				ft_free_stack(t_data *top);
-void				ft_display_stack(t_data *top);
-t_data				*ft_create_stack(int argc, char **argv);
+typedef struct s_options
+{
+    int simple;
+    int medium;
+    int complex;
+    int adaptive;
+} t_options;
 
-/* Operations */
-void				ft_pa(t_data *stack_A, t_data *stack_B);
-void				ft_pb(t_data *stack_A, t_data *stack_B);
-void				ft_sa(t_data *stack_A);
-void				ft_sb(t_data *stack_B);
-void				ft_ss(t_data *stack_A, t_data *stack_B);
-void				ft_ra(t_data *stack_A);
-void				ft_rb(t_data *stack_B);
-void				ft_rr(t_data *stack_A, t_data *stack_B);
-void				ft_rra(t_data *stack_A);
-void				ft_rrb(t_data *stack_B);
-void				ft_rrr(t_data *stack_A, t_data *stack_B);
+void ft_push(t_data *top, int value);
+int ft_pop(t_data *top, int *value);
+void ft_free_stack(t_data *top);
+void ft_display_stack(t_data *top);
+t_data *ft_create_stack(int argc, char **argv);
+t_data *ft_create_empty_stack(void);
 
-/* Parsing part */
-const char	*ft_get_strategy_selector(char *str, int *index);
-int					ft_parse_numbers(t_data *stack, const char *str,
-						t_stack ***tail);
-int					ft_check_duplicates(t_data *data);
+void ft_pa(t_data *a, t_data *b);
+void ft_pb(t_data *a, t_data *b);
+void ft_sa(t_data *a);
+void ft_sb(t_data *b);
+void ft_ss(t_data *a, t_data *b);
+void ft_ra(t_data *a);
+void ft_rb(t_data *b);
+void ft_rr(t_data *a, t_data *b);
+void ft_rra(t_data *a);
+void ft_rrb(t_data *b);
+void ft_rrr(t_data *a, t_data *b);
 
-/* sorting part */
-void	ft_sort_selection(t_data *a, t_data *b);
-void ft_sort_Chunk(t_data *stack_a, t_data *stack_b);
-void ft_sort_radix(t_data *stack_a, t_data *stack_b);
+int ft_parse_options(int ac, char **av, t_options *options);
+int ft_is_option(char *arg);
+int ft_parse_numbers(t_data *stack, const char *str, t_stack ***tail);
+int ft_check_duplicates(t_data *data);
+
+void ft_sort(t_data *data, t_options *options);
+void ft_sort_selection(t_data *a, t_data *b);
+void ft_sort_chunk(t_data *a, t_data *b);
+void ft_sort_radix(t_data *a, t_data *b);
+void ft_sort_simple(t_data *a);
+void ft_sort_medium(t_data *a);
+void ft_sort_complex(t_data *a);
+void ft_sort_adaptive(t_data *data);
+int ft_index_stack(t_data *stack);
+int *ft_copy_stack_to_array(t_data *stack);
+
+int ft_count_inversions(int *arr, int size);
+double ft_disorder(int *arr, int size);
 
 #endif
